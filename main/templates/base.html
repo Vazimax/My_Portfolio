@@ -5,10 +5,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>{% block title %}{%endblock %}</title>
+    {% if title %}
+        <title>Bakr - {{ title }}</title>
+    {% else %}
+        <title>Bakr</title>
+    {% endif %}
+    
     <meta name="author" content="Did Coding Limited & James Granger Design">
     <link rel="canonical" href="{{request.path}}"/>
-    <link rel="home" href="{% url 'main:home' %}"/>
+    <link rel="home" href="{% url 'home' %}"/>
     <meta name="description" content="{% block description %}{% endblock %}">
     <meta name="keywords" content="{% block keywords %}{% endblock %}">
 
@@ -28,13 +33,13 @@
 
   </head>
   <body>
-    {% include 'main/partials/messages.html' %}
-    {% include 'main/partials/nav.html' %}
+    {% include 'partials/messages.html' %}
+    {% include 'partials/nav.html' %}
 
     {% block content %}
     {% endblock %}
 
-    {% include 'main/partials/footer.html' %}
+    {% include 'partials/footer.html' %}
 
     <!-- ================================
     Start Scripts

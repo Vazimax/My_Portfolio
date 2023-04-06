@@ -1,4 +1,4 @@
-{% extends 'main/base.html' %}
+{% extends 'base.html' %}
 {% load static %}
 
 <!-- ================================
@@ -37,7 +37,7 @@ Start Content
       <div class="row g-4 g-md-3  align-items-center">
         <div class="col-md-6">
           <div class="bannerContent">
-            <h1 class="xlTitle pb-md-3">See my recent projects below</h1>
+            <h1 class="xlTitle pb-md-3">Contact us below</h1>
           </div>
         </div>
       </div>
@@ -48,24 +48,23 @@ Start Content
 <section>
   <div class="lightBg">
     <div class="container">
-      <div class="portfolioContentMain">
-        <div class="row g-3 g-md-4 g-lg-5 portfolioRow">
-          {% for obj in object_list %}
-          <div class="col-md-6 pColMain">
-            <div class="pCol">
-              <a href="{% url 'main:portfolio' slug=obj.slug %}" >
-              <img src="{{obj.image.url}}" alt="..." class="pImg">
-              </a>
-            </div>
-          </div>
-          {% endfor %}
-          
-        </div>
-      </div>
+        <form id="contactForm" method="POST" action="/contact/">
+        {% csrf_token %}
+            <label for="name">Name</label>
+            {{form.name}}
+
+            <label for="email">Email</label>
+            {{form.email}}
+
+            <label for="subject">Message</label>
+            {{form.message}}
+
+            <input class='btn btnPrimary' type="submit" value="Submit">
+        </form>
     </div>
   </div>
 </section>
 <!-- ================================
 End Content
 ================================= -->
-{% endblock%}    
+{%endblock%}

@@ -1,4 +1,4 @@
-{% extends 'main/base.html' %}
+{% extends 'base.html' %}
 {% load static %}
 
 <!-- ================================
@@ -37,7 +37,7 @@ Start Content
       <div class="row g-4 g-md-3  align-items-center">
         <div class="col-md-6">
           <div class="bannerContent">
-            <h1 class="xlTitle pb-md-3">See my recent blogs below</h1>
+            <h1 class="xlTitle pb-md-3">See my recent projects below</h1>
           </div>
         </div>
       </div>
@@ -50,16 +50,17 @@ Start Content
     <div class="container">
       <div class="portfolioContentMain">
         <div class="row g-3 g-md-4 g-lg-5 portfolioRow">
-          {% for obj in object_list %}
+          {% for portfolio in portfolios %}
           <div class="col-md-6 pColMain">
             <div class="pCol">
-              <a href="{% url 'main:blog' slug=obj.slug %}" >
-              <img src="{{obj.image.url}}" alt="..." class="pImg">
-              </a>
+              <a href="{% url 'portfolio_detail' portfolio.id %}"> {{portfolio.name}} </a>
+              <br>
+              <img src="{{portfolio.image.url}}" alt="..." class="pImg">
+              
             </div>
           </div>
           {% endfor %}
-
+          
         </div>
       </div>
     </div>
@@ -68,4 +69,4 @@ Start Content
 <!-- ================================
 End Content
 ================================= -->
-{%endblock%} 
+{% endblock%}    

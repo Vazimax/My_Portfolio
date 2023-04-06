@@ -2,13 +2,11 @@ from django.urls import path
 from . import views
 
 
-app_name = "main"
-
 urlpatterns = [
-	path('', views.IndexView.as_view(), name="home"),
+	path('', views.home, name="home"),
 	path('contact/', views.ContactView.as_view(), name="contact"),
-	path('portfolio/', views.PortfolioView.as_view(), name="portfolios"),
-	path('portfolio/<slug:slug>', views.PortfolioDetailView.as_view(), name="portfolio"),
+	path('portfolio/', views.portfolio, name="portfolio"),
+	path('portfolio/<str:pk>', views.portfolio_detail, name="portfolio_detail"),
 	path('blog/', views.BlogView.as_view(), name="blogs"),
 	path('blog/<slug:slug>', views.BlogDetailView.as_view(), name="blog"),
 	]

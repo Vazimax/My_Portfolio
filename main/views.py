@@ -11,29 +11,25 @@ from .models import (
 from django.views import generic
 
 
-from . forms import ContactForm
+from .forms import ContactForm
 
 
-class IndexView(generic.TemplateView):
-	template_name = "main/index.html"
+def home(request):
+	certificates = Certificate.objects.filter(is_active=True)
+	blogs = Blog.objects.filter(is_active=True)
+	portfolio = Portfolio.objects.filter(is_active=True)
 
-	def get_context_data(self, **kwargs):
-		context = super().get_context_data(**kwargs)
-		
-		testimonials = Testimonial.objects.filter(is_active=True)
-		certificates = Certificate.objects.filter(is_active=True)
-		blogs = Blog.objects.filter(is_active=True)
-		portfolio = Portfolio.objects.filter(is_active=True)
-		
-		context["testimonials"] = testimonials
-		context["certificates"] = certificates
-		context["blogs"] = blogs
-		context["portfolio"] = portfolio
-		return context
+	context = {
+		'certificates': certificates,
+		'blogs': blogs,
+		'portfolio': portfolio,
+	}
+
+	return render(request,'index.html',context)
 
 
 class ContactView(generic.FormView):
-	template_name = "main/contact.html"
+	template_name = "contact.html"
 	form_class = ContactForm
 	success_url = "/"
 	
@@ -43,22 +39,33 @@ class ContactView(generic.FormView):
 		return super().form_valid(form)
 
 
-class PortfolioView(generic.ListView):
-	model = Portfolio
-	template_name = "main/portfolio.html"
-	paginate_by = 10
+def portfolio(request):
+	portfolios = Portfolio.objects.filter(is_active=True)
+	context = {
+		'portfolios': portfolios,
+		'title': 'Portfolio',
+	}
 
-	def get_queryset(self):
-		return super().get_queryset().filter(is_active=True)
+	return render(request,'portfolio.html',context)
 
 
-class PortfolioDetailView(generic.DetailView):
-	model = Portfolio
-	template_name = "main/portfolio-detail.html"
+# class PortfolioDetailView(generic.DetailView):
+# 	model = Portfolio
+# 	template_name = "portfolio-detail.html"
+
+def portfolio_detail(request,pk):
+    portfolio = Portfolio.objects.get(id=pk)
+
+    context = {
+        'portfolio': portfolio,
+        'title': 'Portfolio detail',
+    }
+
+    return render(request, 'portfolio_detail.html', context)
 
 class BlogView(generic.ListView):
 	model = Blog
-	template_name = "main/blog.html"
+	template_name = "blog.html"
 	paginate_by = 10
 	
 	def get_queryset(self):
@@ -67,4 +74,4 @@ class BlogView(generic.ListView):
 
 class BlogDetailView(generic.DetailView):
 	model = Blog
-	template_name = "main/blog-detail.html"
+	template_name = "blog-detail.html"

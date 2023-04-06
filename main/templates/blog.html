@@ -1,4 +1,4 @@
-{% extends 'main/base.html' %}
+{% extends 'base.html' %}
 {% load static %}
 
 <!-- ================================
@@ -37,18 +37,8 @@ Start Content
       <div class="row g-4 g-md-3  align-items-center">
         <div class="col-md-6">
           <div class="bannerContent">
-            <h1 class="xlTitle pb-md-3">{{object.name|title}}</h1>
+            <h1 class="xlTitle pb-md-3">See my recent blogs below</h1>
           </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-auto">
-          <div class="authorCol">
-            <h4 class="smTitle pb-3">{{object.author|title}}</h4>
-          </div>
-        </div>
-        <div class="col-md">
-          <h4 class="smTitle pb-3">{{object.timestamp.date}}</h4>
         </div>
       </div>
     </div>
@@ -56,15 +46,26 @@ Start Content
 </section>
 
 <section>
-  <div class="sectionSpaceSm">
+  <div class="lightBg">
     <div class="container">
-      {{object.body|safe}}
+      <div class="portfolioContentMain">
+        <div class="row g-3 g-md-4 g-lg-5 portfolioRow">
+          {% for obj in object_list %}
+          <div class="col-md-6 pColMain">
+            <div class="pCol">
+              <a href="{% url 'main:blog' slug=obj.slug %}" >
+              <img src="{{obj.image.url}}" alt="..." class="pImg">
+              </a>
+            </div>
+          </div>
+          {% endfor %}
+
+        </div>
+      </div>
     </div>
   </div>
 </section>
-
-{% endblock %}
 <!-- ================================
 End Content
 ================================= -->
-   
+{%endblock%} 

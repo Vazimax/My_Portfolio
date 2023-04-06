@@ -92,6 +92,7 @@ class Portfolio(models.Model):
         verbose_name_plural = 'Portfolio Profiles'
         verbose_name = 'Portfolio'
         ordering = ["name"]
+
     date = models.DateTimeField(blank=True, null=True)
     name = models.CharField(max_length=200, blank=True, null=True)
     description = models.CharField(max_length=500, blank=True, null=True)
@@ -107,9 +108,6 @@ class Portfolio(models.Model):
 
     def __str__(self):
         return self.name
-
-    def get_absolute_url(self):
-        return f"/portfolio/{self.slug}"
 
 
 class Blog(models.Model):
