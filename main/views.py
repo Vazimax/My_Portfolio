@@ -49,16 +49,12 @@ def portfolio(request):
 	return render(request,'portfolio.html',context)
 
 
-# class PortfolioDetailView(generic.DetailView):
-# 	model = Portfolio
-# 	template_name = "portfolio-detail.html"
-
 def portfolio_detail(request,pk):
     portfolio = Portfolio.objects.get(id=pk)
 
     context = {
         'portfolio': portfolio,
-        'title': 'Portfolio detail',
+        'title': portfolio.name,
     }
 
     return render(request, 'portfolio_detail.html', context)
