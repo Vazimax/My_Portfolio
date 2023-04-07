@@ -50,7 +50,7 @@ Start Content
     <div class="container">
       <div class="portfolioContentMain">
         <div class="row g-3 g-md-4 g-lg-5 portfolioRow">
-          {% for obj in object_list %}
+          {% for obj in blogs %}
           <div class="col-md-6 pColMain">
             <div class="pCol">
               <a href="{% url 'blog_detail' obj.id %}" >

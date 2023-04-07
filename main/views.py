@@ -61,13 +61,21 @@ def portfolio_detail(request,pk):
 
     return render(request, 'portfolio_detail.html', context)
 
-class BlogView(generic.ListView):
-	model = Blog
-	template_name = "blog.html"
-	paginate_by = 10
+# class BlogView(generic.ListView):
+# 	model = Blog
+# 	template_name = "blog.html"
+# 	paginate_by = 10
 	
-	def get_queryset(self):
-		return super().get_queryset().filter(is_active=True)
+# 	def get_queryset(self):
+# 		return super().get_queryset().filter(is_active=True)
+
+def blog(request):
+	blogs = Blog.objects.all()
+
+	context = {
+		'blogs':blogs,
+		'title': "Blog"
+	}
 
 
 class BlogDetailView(generic.DetailView):
