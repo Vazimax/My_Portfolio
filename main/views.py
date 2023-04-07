@@ -77,6 +77,8 @@ def blog(request):
 		'title': "Blog"
 	}
 
+	return render(request, 'blog.html', context)
+
 
 class BlogDetailView(generic.DetailView):
 	model = Blog

@@ -42,7 +42,7 @@ Start Content
         </div>
         <div class="col-md">
           <div class="bannerContent">
-            <h1 class="xlTitle pb-3">Hi, I’m {{user.username|title}}, <br> a {{user.userprofile.title}} </br></h1>
+            <h1 class="xlTitle pb-3">Hi, I’m {{user.username|title}}, <br> an {{user.userprofile.title}} </br></h1>
             <p>{{user.userprofile.bio}}</p>
             <div class="bannerBtnCol">
               <div class="row">
@@ -82,7 +82,7 @@ Start Content
           </div>
         </div>
         <div class="col-md">
-          <h3 class="smTitle pb-3">Coding Skills</h3>
+          <h3 class="smTitle pb-3">Tools</h3>
           <div class="progressCol">
             <div class="progressCard">
               {% for sk in me.userprofile.skills.all %}
@@ -104,6 +104,23 @@ Start Content
               {% endfor %}
               
             </div>
+          </div>
+        </div>
+        <div class="col-md-auto">
+          <div class="keySkillCol">
+            <h3 class="smTitle pb-3">Languages</h3>
+            {% for sk in user.userprofile.skills.all %}
+            {% if sk.is_key_skill %}
+            <div class="keySkillCard">
+              {% if sk.image %}
+              <div class="ksIconCol">
+                <img src="{{sk.image.url}}" alt="...">
+              </div>
+              {% endif %}
+              <span class="ksText">{{sk.name}}</span>
+            </div>
+            {% endif %}
+            {% endfor %}
           </div>
         </div>
       </div>
