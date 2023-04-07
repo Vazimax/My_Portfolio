@@ -53,10 +53,13 @@ Start Content
           {% for obj in object_list %}
           <div class="col-md-6 pColMain">
             <div class="pCol">
-              <a href="{% url 'main:blog' slug=obj.slug %}" >
+              <a href="{% url 'blog_detail' obj.id %}" >
               <img src="{{obj.image.url}}" alt="..." class="pImg">
               </a>
             </div>
+            <br>
+            <br>
+            <h2>{{obj.name}}</h2>
           </div>
           {% endfor %}
 

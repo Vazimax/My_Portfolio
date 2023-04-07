@@ -17,12 +17,14 @@ from .forms import ContactForm
 def home(request):
 	certificates = Certificate.objects.filter(is_active=True)
 	blogs = Blog.objects.filter(is_active=True)
-	portfolio = Portfolio.objects.filter(is_active=True)
+	portfolio = Portfolio.objects.filter(is_active=True)#
+	user = UserProfile.objects.all()
 
 	context = {
 		'certificates': certificates,
 		'blogs': blogs,
 		'portfolio': portfolio,
+		'profile':user,
 	}
 
 	return render(request,'index.html',context)

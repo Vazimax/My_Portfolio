@@ -40,6 +40,7 @@ class ContactProfile(models.Model):
         verbose_name_plural = 'Contact Profiles'
         verbose_name = 'Contact Profile'
         ordering = ["timestamp"]
+        
     timestamp = models.DateTimeField(auto_now_add=True)
     name = models.CharField(verbose_name="Name",max_length=100)
     email = models.EmailField(verbose_name="Email")
@@ -144,7 +145,7 @@ class Certificate(models.Model):
         verbose_name_plural = 'Certificates'
         verbose_name = 'Certificate'
 
-    date = models.DateTimeField(blank=True, null=True)
+    date = models.DateField(blank=True, null=True)
     name = models.CharField(max_length=50, blank=True, null=True)
     title = models.CharField(max_length=200, blank=True, null=True)
     description = models.CharField(max_length=500, blank=True, null=True)
